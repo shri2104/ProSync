@@ -52,7 +52,6 @@ fun DashboardScreen(
     navController: NavController,
 ) {
     var showDialog by remember { mutableStateOf(false) }
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -75,7 +74,6 @@ fun DashboardScreen(
                 )
             )
         },
-
         bottomBar = {
             BottomAppBar(
                 containerColor = Color.White,
@@ -95,7 +93,6 @@ fun DashboardScreen(
                             modifier = Modifier.size(28.dp)
                         )
                     }
-
                     Box(
                         modifier = Modifier
                             .size(65.dp)
@@ -123,14 +120,12 @@ fun DashboardScreen(
             }
         }
     ) { padding ->
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
                 .padding(16.dp)
         ) {
-
             Text(
                 "Recent Notes",
                 fontSize = 20.sp,
@@ -146,9 +141,7 @@ fun DashboardScreen(
             ) {
                 Text("No recent notes", color = Color.DarkGray)
             }
-
             Spacer(Modifier.height(20.dp))
-
             Text(
                 "Today’s Tasks",
                 fontSize = 20.sp,
@@ -164,7 +157,6 @@ fun DashboardScreen(
             ) {
                 Text("No tasks for today", color = Color.DarkGray)
             }
-
             Spacer(Modifier.height(20.dp))
             Button(
                 onClick = { navController.navigate("notelist")  },
@@ -177,9 +169,7 @@ fun DashboardScreen(
             ) {
                 Text("All Notes")
             }
-
             Spacer(Modifier.height(10.dp))
-
             Button(
                 onClick = { navController.navigate("tasklist") },
                 modifier = Modifier.fillMaxWidth(),
@@ -193,7 +183,6 @@ fun DashboardScreen(
             }
         }
     }
-
     if (showDialog) {
         AlertDialog(
             onDismissRequest = { showDialog = false },
