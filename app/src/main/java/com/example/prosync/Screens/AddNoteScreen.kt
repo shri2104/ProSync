@@ -1,5 +1,6 @@
 package com.example.prosync.Screens
 
+import android.icu.text.CaseMap
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,11 +27,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.prosync.Viewmodel.notesviewmodel
+import com.example.prosync.model.Note
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddNote(navController: NavHostController) {
+fun AddNote(navController: NavHostController,viewmodel: notesviewmodel= hiltViewModel()) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
     Box(
@@ -72,7 +76,16 @@ fun AddNote(navController: NavHostController) {
             )
             Spacer(modifier = Modifier.height(25.dp))
             Button(
-                onClick = {  },
+                onClick = {
+                    if(title.isNotBlank()){
+                        val note = Note(
+                            title = title,
+                            content = description
+                        )
+                        viewmodel.addnote(note)
+                        navController.popBackStack()
+                    }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
